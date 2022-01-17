@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animais</title>
+    {% load static %}
+    {% load animais_extras %}
+    <link rel="stylesheet" href="{% static 'animais/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'animais/css/custom.css' %}">
+</head>
+<body>
+    <div class="p-5">
+        <h1>Meus animais</h1>
+        <h2>Acessado em: <span>{% data_acesso '%d/%m/%Y' %}</span></h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Classe</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for animal in animais %}
+                <tr>
+                    <th scope="row">{{ animal.id }}</th>
+                    <td><img src="{% static 'animais/img/'|add:animal.foto %}"></td>
+                    <td>{{ animal.nome }}</td>
+                    <td>{{ animal.classe}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'animais/js/teste.js' %}"></script>
+</body>
+</html>
